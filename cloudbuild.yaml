@@ -1,0 +1,13 @@
+steps:   
+- name: gcr.io/cloud-builders/gcloud
+  entrypoint: "bash"
+  args: 
+        - "-c"
+        - |
+          payload="{\"ref\": \"$_REF\", \"repository\": {\"name\": \"$_REPO_NAME\",\"html_url\": \"$_REPO_URL\"},\"pusher\": {\"name\": \"$_PUSHER_NAME\"}}"
+          echo "$payload"
+          gcloud compute ssh --zone us-central1-a bss-uat-jump-host
+timeout: 120s
+options:
+  logging: CLOUD_LOGGING_ONLY
+  logStreamingOption: STREAM_ON
