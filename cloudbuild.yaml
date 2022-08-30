@@ -4,9 +4,8 @@ steps:
   args: 
         - "-c"
         - |
-          payload="{\"ref\": \"$_REF\", \"repository\": {\"name\": \"$_REPO_NAME\",\"html_url\": \"$_REPO_URL\"},\"pusher\": {\"name\": \"$_PUSHER_NAME\"}}"
-          echo "$payload"
-          gcloud compute ssh --zone us-central1-a bss-uat-jump-host
+          cloud compute ssh --zone us-central1-a bss-uat-jump-host -- "curl -X POST https://builder-service.telus-bss-uat.openshift.sdntest.netcracker.com/generic-webhook-trigger/invoke?token=e0442a2026fa8839d3ee2aba0fbd76fd 
+          -H \"Content-Type: application/json\" -d \"{\"ref\":\"$_REF\", \"repository\": {\"name\":\"$_REPO_NAME\",\"html_url\":\"$_REPO_URL\"},\"pusher\":{\"name\":\"$_PUSHER_NAME\"}}\""
 timeout: 120s
 options:
   logging: CLOUD_LOGGING_ONLY
