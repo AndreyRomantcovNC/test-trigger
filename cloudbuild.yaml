@@ -7,7 +7,7 @@ steps:
       - '--zone=us-central1-a'
       - bss-uat-jump-host
       - >-
-        --command=curl -X POST https://builder-service.telus-bss-uat.openshift.sdntest.netcracker.com/generic-webhook-trigger/invoke?token=e0442a2026fa8839d3ee2aba0fbd76fd -H "Content-Type: application/json" -d "{"ref":"$_REF"}"
+        --command=curl -k -X POST https://builder-service.telus-bss-uat.openshift.sdntest.netcracker.com/generic-webhook-trigger/invoke?token=e0442a2026fa8839d3ee2aba0fbd76fd -H "Content-Type: application/json" -d "{"ref":"$_REF"}"
     entrypoint: bash
 timeout: 120s
 options:
