@@ -1,11 +1,11 @@
-steps:
-  - name: gcr.io/cloud-builders/gcloud
-    args:
+steps:   
+- name: gcr.io/cloud-builders/gcloud
+  entrypoint: "bash"
+  args: 
         - "-c"
         - |
-          for i in $(gcloud compute os-login ssh-keys list | grep -v FINGERPRINT); do echo $i; gcloud compute os-login ssh-keys remove --key $i; done
-    entrypoint: bash
+          cloud compute ssh --zone us-central1-a bss-uat-jump-host -- "curl -k https://deployer-service.telus-bss-uat.openshift.sdntest.netcracker.com"
 timeout: 120s
 options:
-  logStreamingOption: STREAM_ON
   logging: CLOUD_LOGGING_ONLY
+  logStreamingOption: STREAM_ON
