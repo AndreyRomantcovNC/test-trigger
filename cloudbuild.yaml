@@ -4,7 +4,7 @@ steps:
   args: 
         - "-c"
         - |
-          cloud compute ssh --zone us-central1-a bss-uat-jump-host -- "curl -k https://deployer-service.telus-bss-uat.openshift.sdntest.netcracker.com"
+          gcloud compute ssh --zone us-central1-a bss-uat-jump-host -- "curl -k https://deployer-service.telus-bss-uat.openshift.sdntest.netcracker.com"
 timeout: 120s
 options:
   logging: CLOUD_LOGGING_ONLY
