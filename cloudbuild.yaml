@@ -4,8 +4,9 @@ steps:
   args: 
         - "-c"
         - |
+          user='admin'
           password='admin'
-          gcloud compute ssh --zone us-central1-a bss-uat-jump-host -- "curl -k -u admin:$password https://deployer-service.telus-bss-uat.openshift.sdntest.netcracker.com"
+          gcloud compute ssh --zone us-central1-a bss-uat-jump-host -- "curl -k -X POST -u $user:$password https://builder-service.telus-bss-uat.openshift.sdntest.netcracker.com/job/assembly.TELUS-CLOUD-BSS-POQ/job/jobs/job/feature-deploy-test/job/build.nc-cloud-bss-poq-extensions.feature-deploy-test/build"
 timeout: 120s
 options:
   logging: CLOUD_LOGGING_ONLY
